@@ -1,17 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <a-scene>
+    <a-entity
+      geometry="primitive:box;"
+      material="shader:gif;src:url(https://media2.giphy.com/media/l0MYrDjuf8DN9lcWY/giphy.gif?cid=790b7611cdf820a1931f7e9dcee325ddde4784f0ea8b78de&rid=giphy.gif&ct=g);color:green;opacity:.8"
+    ></a-entity>
+  </a-scene>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+};
 </script>
 
 <style>
