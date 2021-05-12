@@ -10,9 +10,12 @@
     />
     <!-- sky -->
     <a-sky src="#sky"></a-sky>
-    <Camera :description="description" />
+    <Camera
+      :loading="loading"
+      :displayInfo="displayInfo"
+      :description="description"
+    />
     <TypesSelector :onClickType="onClickType" />
-    <Info :loading="loading" :displayInfo="displayInfo" />
   </a-scene>
 </template>
 
@@ -27,7 +30,6 @@ import Assets from "./components/Assets";
 import LayoutCircle from "./components/LayoutCircle";
 import Camera from "./components/Camera";
 import TypesSelector from "./components/TypesSelector";
-import Info from "./components/Info";
 
 export default {
   name: "App",
@@ -36,7 +38,6 @@ export default {
     LayoutCircle,
     Camera,
     TypesSelector,
-    Info,
   },
   setup() {
     // refs

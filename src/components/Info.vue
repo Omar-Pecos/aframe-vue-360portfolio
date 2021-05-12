@@ -1,17 +1,18 @@
 <template>
   <!-- Plane Info -->
   <a-plane
+    v-if="loading || displayInfo"
     id="plane-info"
     material="color:black;"
-    position="0 3 -0.5"
-    height="2"
-    width="2"
+    position="0 0 -1.5"
+    height="5"
+    width="5"
     :opacity="!loading && !displayInfo ? 0 : 1"
   >
     <a-troika-text
       v-if="loading"
-      font-size="0.05"
-      max-width="0.5"
+      font-size="0.2"
+      max-width="1"
       position="0 0 0.2"
       align="center"
       outline-width="5%"
@@ -21,19 +22,9 @@
 
     <a-troika-text
       v-if="displayInfo"
-      font-size="0.05"
-      max-width="0.5"
-      position="0 0.12 0.2"
-      align="center"
-      outline-width="5%"
-      outline-color="violet"
-      value="Omar Pecos 3D Portfolio \n"
-    ></a-troika-text>
-    <a-troika-text
-      v-if="displayInfo"
-      font-size="0.03"
-      max-width="0.4"
-      position="0 -0.05 0.2"
+      :font-size="0.08"
+      :max-width="maxWidth"
+      :position="`0 ${maxWidth / 10} 0.2`"
       align="center"
       outline-width="5%"
       outline-color="black"
@@ -43,10 +34,17 @@
 </template>
 
 <script>
+import { useMaxWidthFactor } from "../util";
+
 export default {
   props: {
     displayInfo: Boolean,
     loading: Boolean,
+  },
+  setup() {
+    const { maxWidth } = useMaxWidthFactor(1);
+
+    return { maxWidth };
   },
 };
 </script>

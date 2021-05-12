@@ -1,5 +1,39 @@
-// get config and export it
+import { ref, computed } from "vue";
 
+export const useMaxWidthFactor = (widthValue) => {
+  const screenWidth = ref(screen.width);
+
+  window.addEventListener("resize", () => {
+    screenWidth.value = screen.width;
+  });
+
+  const maxWidth = computed(() => {
+    let orientation = screen.orientation;
+
+    if (screenWidth.value < 370) {
+      return widthValue;
+    } else {
+      let width = (widthValue * screenWidth.value) / 370;
+
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        ) &&
+        (orientation.type === "landscape-primary" ||
+          orientation.type === "landscape-secondary")
+      ) {
+        console.log("LANDSCAPE > ", orientation);
+        return width * 1.5;
+      } else {
+        return width;
+      }
+    }
+  });
+
+  return { maxWidth };
+};
+
+// get config and export it
 export const environment = {
   myAccountPass: process.env.VUE_APP_ACCOUNT_PASS,
   apiUrl: process.env.VUE_APP_API_URL,
